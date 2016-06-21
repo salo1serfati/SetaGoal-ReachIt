@@ -11,7 +11,7 @@ import Foundation
 
 class GoalModelController:NSObject {
     //create goals array (array of objects)
-    var goalList: [GoalModel] = []
+    private var goalList: [GoalModel] = []
     
     // Singleton design pattern
     class var sharedInstance: GoalModelController {
@@ -25,7 +25,7 @@ class GoalModelController:NSObject {
         }
         return Static.instance!
     }
-
+ 
     //function that creates a new Goal
     func createNewGoal(title:String, author:String, totalPages:Int, completionTime:Int) {
         //create new goal and append to goalList
@@ -36,13 +36,12 @@ class GoalModelController:NSObject {
         newGoal.dateCreated = NSDate()
         print("\(newGoal.dateCreated)")
         goalList.append(newGoal)
+        print("Goalist after Append: \(goalList)")
     }
     
     //gets goals from goalList
     func getGoalList()->[GoalModel] {
-        if goalList.isEmpty{
-            print("The goalList is empty and the getGoalList funcion was called")
-        }
+        print("goalList From func getGoalList: \(goalList)")
         return goalList
         
     }

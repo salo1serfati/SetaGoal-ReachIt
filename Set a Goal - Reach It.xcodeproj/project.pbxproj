@@ -16,6 +16,8 @@
 		258759C61D18787500CA91D9 /* NewGoalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258759C41D18787500CA91D9 /* NewGoalViewController.xib */; };
 		258759C81D18803B00CA91D9 /* GoalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258759C71D18803B00CA91D9 /* GoalModel.swift */; };
 		258759CA1D18838C00CA91D9 /* GoalModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258759C91D18838C00CA91D9 /* GoalModelController.swift */; };
+		258759F71D19462E00CA91D9 /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258759F51D19462E00CA91D9 /* GoalTableViewCell.swift */; };
+		258759F81D19462E00CA91D9 /* GoalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258759F61D19462E00CA91D9 /* GoalTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		258759C41D18787500CA91D9 /* NewGoalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewGoalViewController.xib; sourceTree = "<group>"; };
 		258759C71D18803B00CA91D9 /* GoalModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalModel.swift; sourceTree = "<group>"; };
 		258759C91D18838C00CA91D9 /* GoalModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalModelController.swift; sourceTree = "<group>"; };
+		258759F51D19462E00CA91D9 /* GoalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
+		258759F61D19462E00CA91D9 /* GoalTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 		258759AC1D1875DA00CA91D9 /* Set a Goal - Reach It */ = {
 			isa = PBXGroup;
 			children = (
+				258759F41D1945F900CA91D9 /* Table Cells */,
 				258759CD1D1883B000CA91D9 /* Screens */,
 				258759CC1D1883A100CA91D9 /* Models */,
 				258759CB1D18839100CA91D9 /* Model Controller */,
@@ -98,6 +103,15 @@
 				258759C41D18787500CA91D9 /* NewGoalViewController.xib */,
 			);
 			name = Screens;
+			sourceTree = "<group>";
+		};
+		258759F41D1945F900CA91D9 /* Table Cells */ = {
+			isa = PBXGroup;
+			children = (
+				258759F51D19462E00CA91D9 /* GoalTableViewCell.swift */,
+				258759F61D19462E00CA91D9 /* GoalTableViewCell.xib */,
+			);
+			name = "Table Cells";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +174,7 @@
 			files = (
 				258759C21D18766A00CA91D9 /* TableViewController.xib in Resources */,
 				258759B81D1875DA00CA91D9 /* LaunchScreen.storyboard in Resources */,
+				258759F81D19462E00CA91D9 /* GoalTableViewCell.xib in Resources */,
 				258759C61D18787500CA91D9 /* NewGoalViewController.xib in Resources */,
 				258759B51D1875DA00CA91D9 /* Assets.xcassets in Resources */,
 			);
@@ -176,6 +191,7 @@
 				258759AE1D1875DA00CA91D9 /* AppDelegate.swift in Sources */,
 				258759CA1D18838C00CA91D9 /* GoalModelController.swift in Sources */,
 				258759C81D18803B00CA91D9 /* GoalModel.swift in Sources */,
+				258759F71D19462E00CA91D9 /* GoalTableViewCell.swift in Sources */,
 				258759C11D18766A00CA91D9 /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +336,7 @@
 				258759BE1D1875DA00CA91D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
