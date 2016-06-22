@@ -41,7 +41,6 @@ class GoalModelController:NSObject {
     
     //gets goals from goalList
     func getGoalList()->[GoalModel] {
-        print("goalList From func getGoalList: \(goalList)")
         return goalList
         
     }
@@ -56,7 +55,36 @@ class GoalModelController:NSObject {
     
     }
     
+    //Updates goal when new number of pages is inserted. 
+    func updateGoal(goal:GoalModel, newPagesRead: Int) {
+        let totalPages = goal.totalPages
+        let completionTime = goal.completionTime
+        var currentPage = goal.currentPage
+        let currentDate = NSDate()
+        let daysPassed = NSCalendar(calendarIdentifier: "..")?.daysWithinEraFromDate(goal.dateCreated!, currentDate: currentDate)
+        
+        //Update the Current Page
+        currentPage = newPagesRead + currentPage!
+        
+        //Calculating the pages and days left after the update
+        let pagesLeft = totalPages! - currentPage!
+        let daysLeft = completionTime! - daysPassed!
+        //So you could now calculate Pages Per Day...
+        let pagesPerDay = pagesLeft / daysLeft
+        
+        //Now set the new Pages Per Day to the Goal Object
+        goal.pagesPerDay = pagesPerDay
     
+        //Also set the new Current Page
+        goal.currentPage = currentPage
+    }
     
-    
+}
+
+extension NSCalendar {
+    func daysWithinEraFromDate(startDate: NSDate, currentDate: NSDate) -> Int {
+        let startDay = self.ordinalityOfUnit(.Day, inUnit: NSCalendarUnit.Era, forDate: startDate)
+        let endDay = self.ordinalityOfUnit(.Day, inUnit: NSCalendarUnit.Era, forDate: currentDate)
+        return endDay - startDay
+    }
 }

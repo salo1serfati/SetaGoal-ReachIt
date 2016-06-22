@@ -22,7 +22,6 @@ class NewGoalViewController: UIViewController {
         //Set the title
         self.title = "SET A GOAL"
       
-        
         //Set the gradient background color
         view.backgroundColor = UIColor.clearColor()
         let backgroundLayer = redBackground.gl
@@ -31,11 +30,11 @@ class NewGoalViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        //Making the Navigation bar l
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 255.0/255.0, green: 95.0/255.0, blue: 94.0/255.0, alpha: 1.0)
         navigationController?.navigationBarHidden = false
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
-        //navigationController?.navigationBar.titleTextAttributes =
     }
 
     override func didReceiveMemoryWarning() {
