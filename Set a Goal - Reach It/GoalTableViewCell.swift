@@ -14,6 +14,7 @@ class GoalTableViewCell: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var ppdLabel: UILabel!
     @IBOutlet weak var currentPageLabel: UILabel!
+    @IBOutlet weak var daysLeftLabel: UILabel!
     
     
     override func awakeFromNib() {

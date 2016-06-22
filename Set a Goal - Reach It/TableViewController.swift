@@ -61,9 +61,10 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         //Set the text, author, pagesPerDay, and currentPage of the label
         cell.titleLabel.text = specificGoal.title
-        cell.authorLabel.text = specificGoal.author
+        cell.authorLabel.text = ("By: \(specificGoal.author!)")
         cell.ppdLabel.text = String(specificGoal.pagesPerDay!)
-        cell.currentPageLabel.text = String(specificGoal.currentPage!)
+        cell.currentPageLabel.text = ("\(String(specificGoal.currentPage!)) / \(String(specificGoal.totalPages!))")
+        cell.daysLeftLabel.text = String(specificGoal.completionTime!)
         
         return cell
         
@@ -72,6 +73,18 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     //Do something when table cell is clicked
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        //instntiate vc
+        
+        let updateGoalViewController = UpdateGoalViewController(nibName: "UpdateGoalViewController", bundle: nil)
+        
+        //vc.goal = goalList[indexPath.row]
+        
+        //indexPath = goalList[indexPath.row]
+        
+        //set whatever attribute
+        updateGoalViewController.goal = goalList[indexPath.row]
+        self.navigationController?.pushViewController(updateGoalViewController, animated: true)
+
     }
     
     //Number of rows displayed

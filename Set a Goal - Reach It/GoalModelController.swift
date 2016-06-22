@@ -61,14 +61,32 @@ class GoalModelController:NSObject {
         let completionTime = goal.completionTime
         var currentPage = goal.currentPage
         let currentDate = NSDate()
-        let daysPassed = NSCalendar(calendarIdentifier: "..")?.daysWithinEraFromDate(goal.dateCreated!, currentDate: currentDate)
+        print("currentDate: \(currentDate)")
+        print("Start Date \(goal.dateCreated)")
+        
+        
+        let calendar: NSCalendar = NSCalendar.currentCalendar()
+        
+        // Replace the hour (time) of both dates with 00:00
+        let date1 = calendar.startOfDayForDate(goal.dateCreated!)
+        let date2 = calendar.startOfDayForDate(currentDate)
+        
+        let flags = NSCalendarUnit.Day
+        let components = calendar.components(flags, fromDate: date1, toDate: date2, options: [])
+        
+          // This will return the number of day(s) between dates
+        let daysPassed = components.day
+        
+        
+        
+        print("Days Passed \(daysPassed)")
         
         //Update the Current Page
         currentPage = newPagesRead + currentPage!
         
         //Calculating the pages and days left after the update
         let pagesLeft = totalPages! - currentPage!
-        let daysLeft = completionTime! - daysPassed!
+        let daysLeft = completionTime! - daysPassed
         //So you could now calculate Pages Per Day...
         let pagesPerDay = pagesLeft / daysLeft
         
@@ -79,12 +97,4 @@ class GoalModelController:NSObject {
         goal.currentPage = currentPage
     }
     
-}
-
-extension NSCalendar {
-    func daysWithinEraFromDate(startDate: NSDate, currentDate: NSDate) -> Int {
-        let startDay = self.ordinalityOfUnit(.Day, inUnit: NSCalendarUnit.Era, forDate: startDate)
-        let endDay = self.ordinalityOfUnit(.Day, inUnit: NSCalendarUnit.Era, forDate: currentDate)
-        return endDay - startDay
-    }
 }

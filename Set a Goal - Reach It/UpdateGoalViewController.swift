@@ -13,11 +13,17 @@ class UpdateGoalViewController: UIViewController {
     @IBOutlet weak var pagesPerDayLabel: UILabel!
     @IBOutlet weak var newPagesReadTextField: UITextField!
 
+    var goal:GoalModel = GoalModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //currentPageLabel.text = the specfic goals pressed current page.
-        //pagesPerDayLabel.text = the specific goal pressed ppd
+        currentPageLabel.text = String(goal.currentPage!)
+        pagesPerDayLabel.text = String(goal.pagesPerDay!)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        navigationController?.navigationBarHidden = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,6 +32,9 @@ class UpdateGoalViewController: UIViewController {
     }
     
     @IBAction func updateButtonTapped(sender: UIButton) {
+        let makeTextFieldAnInt = Int(newPagesReadTextField.text!)!
+        GoalModelController.sharedInstance.updateGoal(goal, newPagesRead: makeTextFieldAnInt)
+        
     }
 
     /*

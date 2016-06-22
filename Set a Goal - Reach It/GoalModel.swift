@@ -36,4 +36,8 @@ class GoalModel:NSObject {
         
     }
     
+    override init() {
+        
+        
+    }
 }
