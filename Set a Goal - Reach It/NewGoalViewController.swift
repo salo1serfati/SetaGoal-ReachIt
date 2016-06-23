@@ -27,10 +27,18 @@ class NewGoalViewController: UIViewController {
         let backgroundLayer = redBackground.gl
         backgroundLayer.frame = view.frame
         view.layer.insertSublayer(backgroundLayer, atIndex: 0)
+        
+        //Create place to where to tapp to make keyboard disappear 
+        let tgr = UITapGestureRecognizer(target: self, action: Selector("backgroundTouched"))
+        self.view.addGestureRecognizer(tgr)
+    }
+    //Make keyboard disappear
+    func backgroundTouched() {
+        self.view.endEditing(true)
     }
     
     override func viewWillAppear(animated: Bool) {
-        //Making the Navigation bar l
+        //Making the Navigation bar
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 255.0/255.0, green: 95.0/255.0, blue: 94.0/255.0, alpha: 1.0)
         navigationController?.navigationBarHidden = false
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
@@ -43,13 +51,13 @@ class NewGoalViewController: UIViewController {
     }
     
     @IBAction func doneButtonTapped(sender: UIButton) {
-        
+       
         let title = titleTextField.text
         let author = authorTextField.text
         let totalPages = Int(totalPagesTextField.text!)
         let completionTime = Int(completionTimeTextField.text!)
        
-        //Make sure you create Checks so the app doesnt crash if something is not inputted or if a string is placed where an Int should be
+        
         GoalModelController.sharedInstance.createNewGoal(title!, author: author!, totalPages: totalPages!, completionTime: completionTime!)
         
         print("New Goal Created")

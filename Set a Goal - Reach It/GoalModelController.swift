@@ -25,6 +25,7 @@ class GoalModelController:NSObject {
         }
         return Static.instance!
     }
+    
  
     //function that creates a new Goal
     func createNewGoal(title:String, author:String, totalPages:Int, completionTime:Int) {
@@ -37,10 +38,20 @@ class GoalModelController:NSObject {
         print("\(newGoal.dateCreated)")
         goalList.append(newGoal)
         print("Goalist after Append: \(goalList)")
+        
+        PersistenceManager.saveNSArray(goalList, fileName: "goalsCreated")
     }
     
     //gets goals from goalList
     func getGoalList()->[GoalModel] {
+        let result = PersistenceManager.loadNSArray("goalsCreated")
+        let places = result as? [GoalModel]
+        
+        if places == nil {
+            self.goalList += []
+        } else {
+            self.goalList = places!
+        }
         return goalList
         
     }
@@ -64,7 +75,7 @@ class GoalModelController:NSObject {
         print("currentDate: \(currentDate)")
         print("Start Date \(goal.dateCreated)")
         
-        
+        //calculating daysPassed
         let calendar: NSCalendar = NSCalendar.currentCalendar()
         
         // Replace the hour (time) of both dates with 00:00
@@ -76,9 +87,6 @@ class GoalModelController:NSObject {
         
           // This will return the number of day(s) between dates
         let daysPassed = components.day
-        
-        
-        
         print("Days Passed \(daysPassed)")
         
         //Update the Current Page
@@ -95,6 +103,44 @@ class GoalModelController:NSObject {
     
         //Also set the new Current Page
         goal.currentPage = currentPage
+        
+        //get the object from array 
+        //copy it with a variable
+        //change it 
+        //put it back in and delete the old one
     }
     
+}
+
+
+class PersistenceManager {
+    
+    //Gets you the writing document directory path
+    class private func documentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentDirectory = paths[0] as String
+        return documentDirectory
+    }
+    
+    class func loadObject(filename:String) -> NSObject? {
+        let file = documentsDirectory().stringByAppendingPathComponent(filename)
+        let result = NSKeyedUnarchiver.unarchiveObjectWithFile(file)
+        return result as? NSObject
+    }
+    
+    class func saveObject(objectToSave: NSObject, fileName: String) {
+        let file = documentsDirectory().stringByAppendingPathComponent(fileName)
+        NSKeyedArchiver.archiveRootObject(objectToSave, toFile: file)
+    }
+    
+    class func saveNSArray(arrayToSave: NSArray, fileName:String) {
+        let file = documentsDirectory().stringByAppendingPathComponent(fileName)
+        NSKeyedArchiver.archiveRootObject(arrayToSave, toFile: file)
+    }
+    
+    class func loadNSArray(fileName:String) -> NSArray? {
+        let file = documentsDirectory().stringByAppendingPathComponent(fileName)
+        let result = NSKeyedUnarchiver.unarchiveObjectWithFile(file)
+        return result as? NSArray
+    }
 }

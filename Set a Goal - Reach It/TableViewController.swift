@@ -77,10 +77,6 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let updateGoalViewController = UpdateGoalViewController(nibName: "UpdateGoalViewController", bundle: nil)
         
-        //vc.goal = goalList[indexPath.row]
-        
-        //indexPath = goalList[indexPath.row]
-        
         //set whatever attribute
         updateGoalViewController.goal = goalList[indexPath.row]
         self.navigationController?.pushViewController(updateGoalViewController, animated: true)
@@ -102,6 +98,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         if editingStyle == .Delete {
             goalList.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            //(self.goalList as! NSMutableArray).removeObjectAtIndex(indexPath.row)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }

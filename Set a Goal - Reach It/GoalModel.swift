@@ -9,7 +9,7 @@
 import Foundation
 
 
-class GoalModel:NSObject { 
+class GoalModel:NSObject, NSCoding {
     var title: String?
     var author: String?
     var totalPages: Int?
@@ -37,7 +37,35 @@ class GoalModel:NSObject {
     }
     
     override init() {
+    }
+    
+    // MARK: - NSCoding
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.title, forKey: "title")
+        aCoder.encodeObject(self.author, forKey: "author")
+        aCoder.encodeObject(self.totalPages, forKey: "totalPages")
+        aCoder.encodeObject(self.completionTime, forKey: "completionTime")
+        aCoder.encodeObject(self.completed, forKey: "completed")
+        aCoder.encodeObject(self.currentPage, forKey: "currentPage")
+        aCoder.encodeObject(self.pagesPerDay, forKey: "pagesPerDay")
+        aCoder.encodeObject(self.dateCreated, forKey: "dateCreated")
         
+        
+        
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        
+        let title = aDecoder.decodeObjectForKey("title") as? String
+        let author = aDecoder.decodeObjectForKey("author") as? String
+        let totalPages = aDecoder.decodeObjectForKey("totalPages") as? Int
+        let completionTime = aDecoder.decodeObjectForKey("completionTime") as? Int
+        let completed = aDecoder.decodeObjectForKey("completed") as? Bool
+        let currentPage = aDecoder.decodeObjectForKey("currentPage") as? Bool
+        let pagesPerDay = aDecoder.decodeObjectForKey("pagesPerDay") as? Int
+        let dateCreated = aDecoder.decodeObjectForKey("dateCreated") as? NSDate
+
+        self.init(title: title!, author: author!, totalPages: totalPages!, completionTime: completionTime!)
         
     }
 }
