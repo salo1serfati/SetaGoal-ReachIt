@@ -73,7 +73,6 @@ class GoalModelController:NSObject {
         let completionTime = goal.completionTime
         var currentPage = goal.currentPage
         let currentDate = NSDate()
-        var completed = goal.completed
         print("currentDate: \(currentDate)")
         print("Start Date \(goal.dateCreated)")
         
@@ -109,7 +108,7 @@ class GoalModelController:NSObject {
         goal.currentPage = currentPage
         print("Your goal has been updated")
             if currentPage == totalPages {
-                completed = true
+                goal.completed = true
                 print("You Finished Your Goal!")
             }
         

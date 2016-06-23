@@ -13,11 +13,12 @@ class UpdateGoalViewController: UIViewController {
     @IBOutlet weak var pagesPerDayLabel: UILabel!
     @IBOutlet weak var newPagesReadTextField: UITextField!
 
+    @IBOutlet weak var titleTextField: UILabel!
     var goal:GoalModel = GoalModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        titleTextField.text = "\(goal.title!) by: \(goal.author!)"
         currentPageLabel.text = String(goal.currentPage!)
         pagesPerDayLabel.text = String(goal.pagesPerDay!)
     }
@@ -39,6 +40,8 @@ class UpdateGoalViewController: UIViewController {
         if makeTextFieldAnInt == nil || newPagesReadTextField.text == "" {
             print("Please enter how many pages have been read")
         } else {
+            currentPageLabel.text = String(goal.currentPage!)
+            pagesPerDayLabel.text = String(goal.pagesPerDay!)
             GoalModelController.sharedInstance.updateGoal(goal, newPagesRead: makeTextFieldAnInt!)
             
         }

@@ -57,28 +57,34 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! GoalTableViewCell
         
         //Link it to your GoalModelController
-        let specificGoal = goalList[indexPath.row]
+        
         if indexPath.section == 0 {
-        //Set the text, author, pagesPerDay, and currentPage of the label
-        cell.titleLabel.text = specificGoal.title
-        cell.authorLabel.text = ("By: \(specificGoal.author!)")
-        cell.ppdLabel.text = String(specificGoal.pagesPerDay!)
-        print("PagesPerDay: \(String(specificGoal.pagesPerDay!))")
-        cell.currentPageLabel.text = ("\(String(specificGoal.currentPage!)) / \(String(specificGoal.totalPages!))")
-        cell.daysLeftLabel.text = String(specificGoal.completionTime!)
+            
+            var ind = nthIncompleteGoal(indexPath.row)
+            let specificGoal = goalList[ind!]
+                //Set the text, author, pagesPerDay, and currentPage of the label
+                cell.titleLabel.text = specificGoal.title
+                cell.authorLabel.text = ("By: \(specificGoal.author!)")
+                cell.ppdLabel.text = String(specificGoal.pagesPerDay!)
+                print("PagesPerDay: \(String(specificGoal.pagesPerDay!))")
+                cell.currentPageLabel.text = ("\(String(specificGoal.currentPage!)) / \(String(specificGoal.totalPages!))")
+                cell.daysLeftLabel.text = String(specificGoal.completionTime!)
+            
+       
             
         } else if indexPath.section == 1 {
-            for goal in goalList {
-                if goal.completed {
-                    print("Rendered complete goal")
-                    cell.titleLabel.text = goal.title
-                    cell.authorLabel.text = ("By: \(goal.author!)")
-                    cell.ppdLabel.text = String(goal.pagesPerDay!)
-                    print("PagesPerDay: \(String(goal.pagesPerDay!))")
-                    cell.currentPageLabel.text = ("\(String(goal.currentPage!)) / \(String(goal.totalPages!))")
-                    cell.daysLeftLabel.text = String(goal.completionTime!)
-                }
-            }
+            
+            var goal = goalList[nthCompleteGoal(indexPath.row)!]
+
+            print("Rendered complete goal")
+            cell.titleLabel.text = goal.title
+            cell.authorLabel.text = ("By: \(goal.author!)")
+            cell.ppdLabel.text = String(goal.pagesPerDay!)
+            print("PagesPerDay: \(String(goal.pagesPerDay!))")
+            cell.currentPageLabel.text = ("\(String(goal.currentPage!)) / \(String(goal.totalPages!))")
+            cell.daysLeftLabel.text = String(goal.completionTime!)
+
+
         }
         return cell
         
@@ -91,7 +97,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         let updateGoalViewController = UpdateGoalViewController(nibName: "UpdateGoalViewController", bundle: nil)
         
         //set whatever attribute
-        updateGoalViewController.goal = goalList[indexPath.row]
+        
+        updateGoalViewController.goal = goalList[indexOfGoal(indexPath)!]
         self.navigationController?.pushViewController(updateGoalViewController, animated: true)
 
     }
@@ -101,11 +108,23 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         var countPerSection: Int?
         
         if section == 0 {
-            countPerSection = goalList.count
+            countPerSection = goalList.count - getCountOfCompletedGoals()
+            print("countPerSection Section 0: \(countPerSection)")
         } else if section == 1 {
-            countPerSection = 1
+            countPerSection = getCountOfCompletedGoals()
+            print("countPerSection Section 1: \(countPerSection)")
         }
         return countPerSection!
+    }
+    //Get number of completed goals
+    func getCountOfCompletedGoals() -> Int {
+        var count = 0
+        for goal in goalList {
+            if goal.completed {
+                count = count + 1
+            }
+        }
+        return count
     }
     
     //Height of table cell
@@ -116,8 +135,9 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     //Swipe To Delete
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            //remove item from goalList
-            goalList.removeAtIndex(indexPath.row)
+            
+                goalList.removeAtIndex(indexOfGoal(indexPath)!)
+            
             
             //remove cell from Table View
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
@@ -125,10 +145,48 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
             //Resave goallist in NSArray to persist the deletion
             PersistenceManager.saveNSArray(goalList, fileName: "goalsCreated")
             
-            
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
+    }
+    
+    func indexOfGoal(indexPath:NSIndexPath) -> Int? {
+        if (indexPath.section == 0) {
+            return nthIncompleteGoal(indexPath.row)
+        }   else{
+            return nthCompleteGoal(indexPath.row)
+        }
+    }
+    
+    func nthIncompleteGoal(n:Int) -> Int?  {
+        
+        var completedGoalsFoundCount = 0
+        for (ind,goal) in goalList.enumerate()  {
+            if (!goal.completed)   {
+                
+                if (n == completedGoalsFoundCount)   {
+                    return ind
+                }
+                completedGoalsFoundCount++
+            }
+        }
+        return nil
+
+    }
+    
+    func nthCompleteGoal(n:Int) -> Int?  {
+        
+        var completedGoalsFoundCount = 0
+        for (ind,goal) in goalList.enumerate()  {
+            if (goal.completed)   {
+                
+                if (n == completedGoalsFoundCount)   {
+                    return ind
+                }
+                completedGoalsFoundCount++
+            }
+        }
+        return nil
     }
     
     //Second Section of TableView 
