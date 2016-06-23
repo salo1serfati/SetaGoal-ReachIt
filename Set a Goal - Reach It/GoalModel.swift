@@ -14,13 +14,14 @@ class GoalModel:NSObject, NSCoding {
     var author: String?
     var totalPages: Int?
     var completionTime: Int?
-    var completed: Bool?
+    var completed: Bool = false
     var currentPage: Int?
     var pagesPerDay: Int?
     var dateCreated: NSDate?
+    var ID: String?
     
     //Creating  the Object for the new Goal. Parameters are required, what is in the init is optional.
-    init (title:String, author:String, totalPages:Int, completionTime:Int) {
+    init (title:String, author:String, totalPages:Int, completionTime:Int, id:String? = nil) {
         //Given by Parameters
         self.title = title
         self.author = author
@@ -28,10 +29,21 @@ class GoalModel:NSObject, NSCoding {
         self.completionTime = completionTime
         
         //Additional descriptions of Goal
-        self.completed = false
-        self.currentPage = 0
-        self.pagesPerDay = 0
-        self.dateCreated = NSDate()
+//        self.completed = false
+//        self.currentPage = 0
+//        self.pagesPerDay = 0
+//        self.dateCreated = NSDate()
+//        if let idIn = id    {
+//            self.ID = idIn
+//        }   else    {
+//            let uuid = NSUUID().UUIDString
+//            print(uuid)
+//            
+//            self.ID = uuid
+//            
+//        }
+        
+
         
         
     }
@@ -49,7 +61,7 @@ class GoalModel:NSObject, NSCoding {
         aCoder.encodeObject(self.currentPage, forKey: "currentPage")
         aCoder.encodeObject(self.pagesPerDay, forKey: "pagesPerDay")
         aCoder.encodeObject(self.dateCreated, forKey: "dateCreated")
-        
+        aCoder.encodeObject(self.ID, forKey: "id")
         
         
     }
@@ -61,11 +73,15 @@ class GoalModel:NSObject, NSCoding {
         let totalPages = aDecoder.decodeObjectForKey("totalPages") as? Int
         let completionTime = aDecoder.decodeObjectForKey("completionTime") as? Int
         let completed = aDecoder.decodeObjectForKey("completed") as? Bool
-        let currentPage = aDecoder.decodeObjectForKey("currentPage") as? Bool
+        let currentPage = aDecoder.decodeObjectForKey("currentPage") as? Int
         let pagesPerDay = aDecoder.decodeObjectForKey("pagesPerDay") as? Int
         let dateCreated = aDecoder.decodeObjectForKey("dateCreated") as? NSDate
-
+        let id = aDecoder.decodeObjectForKey("id") as? String
         self.init(title: title!, author: author!, totalPages: totalPages!, completionTime: completionTime!)
-        
+        self.completed = completed!
+        self.currentPage = currentPage
+        self.pagesPerDay = pagesPerDay
+        self.dateCreated = dateCreated
+        self.ID = id
     }
 }

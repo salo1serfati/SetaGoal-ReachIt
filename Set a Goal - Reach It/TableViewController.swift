@@ -58,14 +58,28 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         //Link it to your GoalModelController
         let specificGoal = goalList[indexPath.row]
-        
+        if indexPath.section == 0 {
         //Set the text, author, pagesPerDay, and currentPage of the label
         cell.titleLabel.text = specificGoal.title
         cell.authorLabel.text = ("By: \(specificGoal.author!)")
         cell.ppdLabel.text = String(specificGoal.pagesPerDay!)
+        print("PagesPerDay: \(String(specificGoal.pagesPerDay!))")
         cell.currentPageLabel.text = ("\(String(specificGoal.currentPage!)) / \(String(specificGoal.totalPages!))")
         cell.daysLeftLabel.text = String(specificGoal.completionTime!)
-        
+            
+        } else if indexPath.section == 1 {
+            for goal in goalList {
+                if goal.completed {
+                    print("Rendered complete goal")
+                    cell.titleLabel.text = goal.title
+                    cell.authorLabel.text = ("By: \(goal.author!)")
+                    cell.ppdLabel.text = String(goal.pagesPerDay!)
+                    print("PagesPerDay: \(String(goal.pagesPerDay!))")
+                    cell.currentPageLabel.text = ("\(String(goal.currentPage!)) / \(String(goal.totalPages!))")
+                    cell.daysLeftLabel.text = String(goal.completionTime!)
+                }
+            }
+        }
         return cell
         
     }
@@ -74,7 +88,6 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         //instntiate vc
-        
         let updateGoalViewController = UpdateGoalViewController(nibName: "UpdateGoalViewController", bundle: nil)
         
         //set whatever attribute
@@ -85,7 +98,14 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     //Number of rows displayed
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return goalList.count
+        var countPerSection: Int?
+        
+        if section == 0 {
+            countPerSection = goalList.count
+        } else if section == 1 {
+            countPerSection = 1
+        }
+        return countPerSection!
     }
     
     //Height of table cell
@@ -96,16 +116,42 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     //Swipe To Delete
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
+            //remove item from goalList
             goalList.removeAtIndex(indexPath.row)
+            
+            //remove cell from Table View
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            //(self.goalList as! NSMutableArray).removeObjectAtIndex(indexPath.row)
+            
+            //Resave goallist in NSArray to persist the deletion
+            PersistenceManager.saveNSArray(goalList, fileName: "goalsCreated")
+            
+            
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
     
+    //Second Section of TableView 
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
     
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var header: String?
+        if section == 0 {
+            header = "Goals"
+        } else if section == 1 {
+            header = "Goals Completed"
+        }
+        return header
+    }
+    
+    //Move completed goal to the new Section
+    func tableView(tableView: UITableView,moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        
+        
+    }
     
 
 }

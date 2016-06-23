@@ -56,12 +56,26 @@ class NewGoalViewController: UIViewController {
         let author = authorTextField.text
         let totalPages = Int(totalPagesTextField.text!)
         let completionTime = Int(completionTimeTextField.text!)
-       
-        
-        GoalModelController.sharedInstance.createNewGoal(title!, author: author!, totalPages: totalPages!, completionTime: completionTime!)
-        
-        print("New Goal Created")
-        
+       print("Author: \(author)")
+        //Checks for nils and empty textFields
+        if title == nil || title == "" {
+            print("Please enter a title")
+        }
+        if author == nil || author == "" {
+            print("Please enter an Author")
+            
+        }
+        if totalPages == nil || totalPagesTextField.text != ""{
+            print("Please enter Total Amount of Pages")
+        }
+        if completionTime == nil || completionTimeTextField.text != "" {
+            print("Please enter Completion Time")
+        }
+        if title != nil && author != nil && totalPages != nil && completionTime != nil {
+        GoalModelController.sharedInstance.createNewGoal(title!, author: author!, totalPages: totalPages!,  completionTime: completionTime!)
+            print("New Goal Created")
+        }
+        sender.userInteractionEnabled = false
     }
 }
 

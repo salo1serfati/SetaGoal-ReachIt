@@ -20,6 +20,7 @@
 		258759F81D19462E00CA91D9 /* GoalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258759F61D19462E00CA91D9 /* GoalTableViewCell.xib */; };
 		25875A231D1A91C300CA91D9 /* UpdateGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25875A211D1A91C300CA91D9 /* UpdateGoalViewController.swift */; };
 		25875A241D1A91C300CA91D9 /* UpdateGoalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25875A221D1A91C300CA91D9 /* UpdateGoalViewController.xib */; };
+		25875A261D1BFB3C00CA91D9 /* DateComparisonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25875A251D1BFB3C00CA91D9 /* DateComparisonExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		258759F61D19462E00CA91D9 /* GoalTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalTableViewCell.xib; sourceTree = "<group>"; };
 		25875A211D1A91C300CA91D9 /* UpdateGoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateGoalViewController.swift; sourceTree = "<group>"; };
 		25875A221D1A91C300CA91D9 /* UpdateGoalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateGoalViewController.xib; sourceTree = "<group>"; };
+		25875A251D1BFB3C00CA91D9 /* DateComparisonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateComparisonExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				258759B41D1875DA00CA91D9 /* Assets.xcassets */,
 				258759B61D1875DA00CA91D9 /* LaunchScreen.storyboard */,
 				258759B91D1875DA00CA91D9 /* Info.plist */,
+				25875A251D1BFB3C00CA91D9 /* DateComparisonExtension.swift */,
 			);
 			path = "Set a Goal - Reach It";
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				258759C81D18803B00CA91D9 /* GoalModel.swift in Sources */,
 				258759F71D19462E00CA91D9 /* GoalTableViewCell.swift in Sources */,
 				25875A231D1A91C300CA91D9 /* UpdateGoalViewController.swift in Sources */,
+				25875A261D1BFB3C00CA91D9 /* DateComparisonExtension.swift in Sources */,
 				258759C11D18766A00CA91D9 /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

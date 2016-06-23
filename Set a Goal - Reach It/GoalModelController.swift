@@ -35,7 +35,8 @@ class GoalModelController:NSObject {
         newGoal.currentPage = 0
         newGoal.pagesPerDay = self.checkPagesPerDay(totalPages, completionTime: completionTime)
         newGoal.dateCreated = NSDate()
-        print("\(newGoal.dateCreated)")
+        newGoal.ID = NSUUID().UUIDString
+        print("New Goal Created and the ID is: \(newGoal.ID))")
         goalList.append(newGoal)
         print("Goalist after Append: \(goalList)")
         
@@ -72,6 +73,7 @@ class GoalModelController:NSObject {
         let completionTime = goal.completionTime
         var currentPage = goal.currentPage
         let currentDate = NSDate()
+        var completed = goal.completed
         print("currentDate: \(currentDate)")
         print("Start Date \(goal.dateCreated)")
         
@@ -98,16 +100,38 @@ class GoalModelController:NSObject {
         //So you could now calculate Pages Per Day...
         let pagesPerDay = pagesLeft / daysLeft
         
+        if currentPage <= totalPages {
+        
         //Now set the new Pages Per Day to the Goal Object
         goal.pagesPerDay = pagesPerDay
     
         //Also set the new Current Page
         goal.currentPage = currentPage
+        print("Your goal has been updated")
+            if currentPage == totalPages {
+                completed = true
+                print("You Finished Your Goal!")
+            }
         
-        //get the object from array 
-        //copy it with a variable
-        //change it 
-        //put it back in and delete the old one
+        } else {
+            print("You read more pages than are in your book!")
+            return
+        }
+        
+        
+        for (i,goalInArray) in goalList.enumerate() {
+            print("GoalInArray ID: \(goalInArray.ID)")
+            print("Goal ID: \(goal.ID)")
+            if (goalInArray.ID  == goal.ID) {
+                goalList.removeAtIndex(i)
+                print("GoalList after Removal:\(goalList)")
+                goalList.append(goal)
+            }
+        }
+        
+          
+        
+        PersistenceManager.saveNSArray(goalList, fileName: "goalsCreated")
     }
     
 }

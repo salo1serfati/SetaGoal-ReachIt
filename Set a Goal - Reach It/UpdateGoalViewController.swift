@@ -32,9 +32,16 @@ class UpdateGoalViewController: UIViewController {
     }
     
     @IBAction func updateButtonTapped(sender: UIButton) {
-        let makeTextFieldAnInt = Int(newPagesReadTextField.text!)!
-        GoalModelController.sharedInstance.updateGoal(goal, newPagesRead: makeTextFieldAnInt)
         
+        let makeTextFieldAnInt = Int(newPagesReadTextField.text!)
+        
+        //Check that textField isnt empty
+        if makeTextFieldAnInt == nil || newPagesReadTextField.text == "" {
+            print("Please enter how many pages have been read")
+        } else {
+            GoalModelController.sharedInstance.updateGoal(goal, newPagesRead: makeTextFieldAnInt!)
+            
+        }
     }
 
     /*
