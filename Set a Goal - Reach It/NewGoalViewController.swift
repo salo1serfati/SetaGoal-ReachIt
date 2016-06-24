@@ -71,9 +71,18 @@ class NewGoalViewController: UIViewController {
         if completionTime == nil || completionTimeTextField.text != "" {
             print("Please enter Completion Time")
         }
+        //If Everything is inserted.
         if title != nil && author != nil && totalPages != nil && completionTime != nil {
-        GoalModelController.sharedInstance.createNewGoal(title!, author: author!, totalPages: totalPages!,  completionTime: completionTime!)
+            GoalModelController.sharedInstance.createNewGoal(title!, author: author!, totalPages: totalPages!,  completionTime: completionTime!)
             print("New Goal Created")
+            //Making Alert
+            let alert = UIAlertController(title: "Alert", message: "Your goal has been created", preferredStyle: .Alert)
+            
+            let alertActionGoBack = UIAlertAction(title: "OK", style: .Default, handler: {action in
+                self.navigationController?.popViewControllerAnimated(true)
+                 })
+            alert.addAction(alertActionGoBack)
+            presentViewController(alert, animated: true, completion: nil)
         }
         sender.userInteractionEnabled = false
     }

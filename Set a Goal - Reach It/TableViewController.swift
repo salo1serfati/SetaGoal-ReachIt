@@ -29,6 +29,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         //Register the Nib
         tableView.registerNib(UINib(nibName: "GoalTableViewCell", bundle: nil), forCellReuseIdentifier: "GoalTableViewCell")
         
+        self.tableView.headerViewForSection(25)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -60,8 +62,9 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         if indexPath.section == 0 {
             
-            var ind = nthIncompleteGoal(indexPath.row)
-            let specificGoal = goalList[ind!]
+//            let ind = nthIncompleteGoal(indexPath.row)
+            let specificGoal = goalList[indexOfGoal(indexPath)!]
+            
                 //Set the text, author, pagesPerDay, and currentPage of the label
                 cell.titleLabel.text = specificGoal.title
                 cell.authorLabel.text = ("By: \(specificGoal.author!)")
@@ -74,7 +77,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
             
         } else if indexPath.section == 1 {
             
-            var goal = goalList[nthCompleteGoal(indexPath.row)!]
+            let goal = goalList[indexOfGoal(indexPath)!]
 
             print("Rendered complete goal")
             cell.titleLabel.text = goal.title
@@ -83,21 +86,21 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
             print("PagesPerDay: \(String(goal.pagesPerDay!))")
             cell.currentPageLabel.text = ("\(String(goal.currentPage!)) / \(String(goal.totalPages!))")
             cell.daysLeftLabel.text = String(goal.completionTime!)
-
-
+            cell.backgroundColor = UIColor.init(red: 121.0/255.0, green: 174.0/255.0, blue: 61.0/255.0, alpha: 1.0)
         }
         return cell
+        
         
     }
     
     //Do something when table cell is clicked
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         //instntiate vc
         let updateGoalViewController = UpdateGoalViewController(nibName: "UpdateGoalViewController", bundle: nil)
         
         //set whatever attribute
-        
         updateGoalViewController.goal = goalList[indexOfGoal(indexPath)!]
         self.navigationController?.pushViewController(updateGoalViewController, animated: true)
 
@@ -109,10 +112,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         if section == 0 {
             countPerSection = goalList.count - getCountOfCompletedGoals()
-            print("countPerSection Section 0: \(countPerSection)")
         } else if section == 1 {
             countPerSection = getCountOfCompletedGoals()
-            print("countPerSection Section 1: \(countPerSection)")
         }
         return countPerSection!
     }
@@ -131,12 +132,22 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 64.5
     }
+//    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        var heightOfFooter: CGFloat
+//        if section == 0 {
+//            heightOfFooter = 30.0
+//        } else  {
+//            heightOfFooter = 30.0
+//        }
+//        return heightOfFooter
+//    }
     
     //Swipe To Delete
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             
-                goalList.removeAtIndex(indexOfGoal(indexPath)!)
+            //Remove from Goalist at specfic section
+            goalList.removeAtIndex(indexOfGoal(indexPath)!)
             
             
             //remove cell from Table View
@@ -167,7 +178,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
                 if (n == completedGoalsFoundCount)   {
                     return ind
                 }
-                completedGoalsFoundCount++
+                completedGoalsFoundCount += 1
             }
         }
         return nil
@@ -183,7 +194,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
                 if (n == completedGoalsFoundCount)   {
                     return ind
                 }
-                completedGoalsFoundCount++
+                completedGoalsFoundCount += 1
             }
         }
         return nil
@@ -198,9 +209,9 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var header: String?
         if section == 0 {
-            header = "Goals"
+            header = "Goals:"
         } else if section == 1 {
-            header = "Goals Completed"
+            header = "Goals Completed:"
         }
         return header
     }

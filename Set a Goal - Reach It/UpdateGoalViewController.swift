@@ -12,19 +12,46 @@ class UpdateGoalViewController: UIViewController {
     @IBOutlet weak var currentPageLabel: UILabel!
     @IBOutlet weak var pagesPerDayLabel: UILabel!
     @IBOutlet weak var newPagesReadTextField: UITextField!
-
     @IBOutlet weak var titleTextField: UILabel!
+    
     var goal:GoalModel = GoalModel()
+    let blueBackground = BlueBClass()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let text = "UPDATE"
+        self.title = "UPDATE"
+        let range = (text as NSString).rangeOfString(title!)
+        let attributedString = NSMutableAttributedString(string:title!)
+        attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor() , range: range)
+       
+        
         titleTextField.text = "\(goal.title!) by: \(goal.author!)"
         currentPageLabel.text = String(goal.currentPage!)
         pagesPerDayLabel.text = String(goal.pagesPerDay!)
+        
+        //Set the gradient background color
+        view.backgroundColor = UIColor.clearColor()
+        let backgroundLayer = blueBackground.gl
+        backgroundLayer.frame = view.frame
+        view.layer.insertSublayer(backgroundLayer, atIndex: 0)
+        
+        //Create place to where to tapp to make keyboard disappear
+        let tgr = UITapGestureRecognizer(target: self, action: Selector("backgroundTouched"))
+        self.view.addGestureRecognizer(tgr)
+    }
+    
+    //Make keyboard disappear
+    func backgroundTouched() {
+        self.view.endEditing(true)
     }
     
     override func viewWillAppear(animated: Bool) {
+        //Making the Navigation bar
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 100.0/255.0, green: 179.0/255.0, blue: 223.0/255.0, alpha: 1.0)
         navigationController?.navigationBarHidden = false
+        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,14 +74,17 @@ class UpdateGoalViewController: UIViewController {
         }
     }
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+class BlueBClass {
+    let colorTop = UIColor(red: 100.0/255.0, green: 179.0/255.0, blue: 223.0/255.0, alpha: 1.0).CGColor
+    let colorBottom = UIColor(red: 23.0/255.0, green: 87.0/255.0, blue: 120.0/255.0, alpha: 1.0).CGColor
+    
+    let gl: CAGradientLayer
+    
+    init() {
+        gl = CAGradientLayer()
+        gl.colors = [ colorTop, colorBottom]
+        gl.locations = [ 0.0, 1.0]
     }
-    */
-
 }
