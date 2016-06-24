@@ -60,6 +60,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         //Link it to your GoalModelController
         
+        
         if indexPath.section == 0 {
             
 //            let ind = nthIncompleteGoal(indexPath.row)
@@ -180,6 +181,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
                 }
                 completedGoalsFoundCount += 1
             }
+            print("inCompletedGoalsFoundCount: \(completedGoalsFoundCount))")
         }
         return nil
 
@@ -196,6 +198,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
                 }
                 completedGoalsFoundCount += 1
             }
+            print("CompletedGoalsFoundCount: \(completedGoalsFoundCount))")
         }
         return nil
     }
