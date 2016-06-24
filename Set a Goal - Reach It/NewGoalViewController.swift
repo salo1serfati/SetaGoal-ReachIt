@@ -79,7 +79,8 @@ class NewGoalViewController: UIViewController {
             let alert = UIAlertController(title: "Alert", message: "Your goal has been created", preferredStyle: .Alert)
             
             let alertActionGoBack = UIAlertAction(title: "OK", style: .Default, handler: {action in
-                self.navigationController?.popViewControllerAnimated(true)
+                let tableViewController = TableViewController(nibName: "TableViewController", bundle: nil)
+                self.navigationController?.pushViewController(tableViewController, animated: true)
                  })
             alert.addAction(alertActionGoBack)
             presentViewController(alert, animated: true, completion: nil)

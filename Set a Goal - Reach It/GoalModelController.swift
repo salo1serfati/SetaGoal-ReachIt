@@ -73,6 +73,7 @@ class GoalModelController:NSObject {
         let completionTime = goal.completionTime
         var currentPage = goal.currentPage
         let currentDate = NSDate()
+        var update = true
         print("currentDate: \(currentDate)")
         print("Start Date \(goal.dateCreated)")
         
@@ -114,6 +115,7 @@ class GoalModelController:NSObject {
         
         } else {
             print("You read more pages than are in your book!")
+             update = false
             return
         }
         

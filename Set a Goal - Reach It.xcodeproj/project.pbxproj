@@ -21,6 +21,12 @@
 		25875A231D1A91C300CA91D9 /* UpdateGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25875A211D1A91C300CA91D9 /* UpdateGoalViewController.swift */; };
 		25875A241D1A91C300CA91D9 /* UpdateGoalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25875A221D1A91C300CA91D9 /* UpdateGoalViewController.xib */; };
 		25875A261D1BFB3C00CA91D9 /* DateComparisonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25875A251D1BFB3C00CA91D9 /* DateComparisonExtension.swift */; };
+		25875A291D1D33D200CA91D9 /* ChooseTypeOfGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25875A271D1D33D200CA91D9 /* ChooseTypeOfGoalViewController.swift */; };
+		25875A2A1D1D33D200CA91D9 /* ChooseTypeOfGoalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25875A281D1D33D200CA91D9 /* ChooseTypeOfGoalViewController.xib */; };
+		25875A2D1D1D356100CA91D9 /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = 25875A2C1D1D356100CA91D9 /* book.png */; };
+		25875A2F1D1D388700CA91D9 /* icon-fitness-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = 25875A2E1D1D388700CA91D9 /* icon-fitness-hi.png */; };
+		25875A311D1D38FB00CA91D9 /* Design_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 25875A301D1D38FB00CA91D9 /* Design_Icon.png */; };
+		25875A331D1D396E00CA91D9 /* question-mark-xxl.png in Resources */ = {isa = PBXBuildFile; fileRef = 25875A321D1D396E00CA91D9 /* question-mark-xxl.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +46,12 @@
 		25875A211D1A91C300CA91D9 /* UpdateGoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateGoalViewController.swift; sourceTree = "<group>"; };
 		25875A221D1A91C300CA91D9 /* UpdateGoalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateGoalViewController.xib; sourceTree = "<group>"; };
 		25875A251D1BFB3C00CA91D9 /* DateComparisonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateComparisonExtension.swift; sourceTree = "<group>"; };
+		25875A271D1D33D200CA91D9 /* ChooseTypeOfGoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseTypeOfGoalViewController.swift; sourceTree = "<group>"; };
+		25875A281D1D33D200CA91D9 /* ChooseTypeOfGoalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseTypeOfGoalViewController.xib; sourceTree = "<group>"; };
+		25875A2C1D1D356100CA91D9 /* book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book.png; sourceTree = "<group>"; };
+		25875A2E1D1D388700CA91D9 /* icon-fitness-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-fitness-hi.png"; sourceTree = "<group>"; };
+		25875A301D1D38FB00CA91D9 /* Design_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Design_Icon.png; sourceTree = "<group>"; };
+		25875A321D1D396E00CA91D9 /* question-mark-xxl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "question-mark-xxl.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +84,7 @@
 		258759AC1D1875DA00CA91D9 /* Set a Goal - Reach It */ = {
 			isa = PBXGroup;
 			children = (
+				25875A2B1D1D355400CA91D9 /* Pic */,
 				258759F41D1945F900CA91D9 /* Table Cells */,
 				258759CD1D1883B000CA91D9 /* Screens */,
 				258759CC1D1883A100CA91D9 /* Models */,
@@ -106,6 +119,8 @@
 			children = (
 				258759BF1D18766A00CA91D9 /* TableViewController.swift */,
 				258759C01D18766A00CA91D9 /* TableViewController.xib */,
+				25875A271D1D33D200CA91D9 /* ChooseTypeOfGoalViewController.swift */,
+				25875A281D1D33D200CA91D9 /* ChooseTypeOfGoalViewController.xib */,
 				258759C31D18787500CA91D9 /* NewGoalViewController.swift */,
 				258759C41D18787500CA91D9 /* NewGoalViewController.xib */,
 				25875A211D1A91C300CA91D9 /* UpdateGoalViewController.swift */,
@@ -121,6 +136,17 @@
 				258759F61D19462E00CA91D9 /* GoalTableViewCell.xib */,
 			);
 			name = "Table Cells";
+			sourceTree = "<group>";
+		};
+		25875A2B1D1D355400CA91D9 /* Pic */ = {
+			isa = PBXGroup;
+			children = (
+				25875A2E1D1D388700CA91D9 /* icon-fitness-hi.png */,
+				25875A321D1D396E00CA91D9 /* question-mark-xxl.png */,
+				25875A2C1D1D356100CA91D9 /* book.png */,
+				25875A301D1D38FB00CA91D9 /* Design_Icon.png */,
+			);
+			name = Pic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,9 +209,14 @@
 			files = (
 				258759C21D18766A00CA91D9 /* TableViewController.xib in Resources */,
 				258759B81D1875DA00CA91D9 /* LaunchScreen.storyboard in Resources */,
+				25875A311D1D38FB00CA91D9 /* Design_Icon.png in Resources */,
 				25875A241D1A91C300CA91D9 /* UpdateGoalViewController.xib in Resources */,
 				258759F81D19462E00CA91D9 /* GoalTableViewCell.xib in Resources */,
+				25875A331D1D396E00CA91D9 /* question-mark-xxl.png in Resources */,
+				25875A2A1D1D33D200CA91D9 /* ChooseTypeOfGoalViewController.xib in Resources */,
 				258759C61D18787500CA91D9 /* NewGoalViewController.xib in Resources */,
+				25875A2D1D1D356100CA91D9 /* book.png in Resources */,
+				25875A2F1D1D388700CA91D9 /* icon-fitness-hi.png in Resources */,
 				258759B51D1875DA00CA91D9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,6 +230,7 @@
 			files = (
 				258759C51D18787500CA91D9 /* NewGoalViewController.swift in Sources */,
 				258759AE1D1875DA00CA91D9 /* AppDelegate.swift in Sources */,
+				25875A291D1D33D200CA91D9 /* ChooseTypeOfGoalViewController.swift in Sources */,
 				258759CA1D18838C00CA91D9 /* GoalModelController.swift in Sources */,
 				258759C81D18803B00CA91D9 /* GoalModel.swift in Sources */,
 				258759F71D19462E00CA91D9 /* GoalTableViewCell.swift in Sources */,

@@ -13,6 +13,7 @@ class UpdateGoalViewController: UIViewController {
     @IBOutlet weak var pagesPerDayLabel: UILabel!
     @IBOutlet weak var newPagesReadTextField: UITextField!
     @IBOutlet weak var titleTextField: UILabel!
+    @IBOutlet weak var daysLeftLabel: UILabel!
     
     var goal:GoalModel = GoalModel()
     let blueBackground = BlueBClass()
@@ -27,9 +28,10 @@ class UpdateGoalViewController: UIViewController {
         attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor() , range: range)
        
         
-        titleTextField.text = "\(goal.title!) by: \(goal.author!)"
-        currentPageLabel.text = String(goal.currentPage!)
+        titleTextField.text = "\(goal.title!)"
+        currentPageLabel.text = "\(String(goal.currentPage!))/\(String(goal.totalPages!))"
         pagesPerDayLabel.text = String(goal.pagesPerDay!)
+        daysLeftLabel.text = String(goal.completionTime!)
         
         //Set the gradient background color
         view.backgroundColor = UIColor.clearColor()
@@ -66,10 +68,25 @@ class UpdateGoalViewController: UIViewController {
         //Check that textField isnt empty
         if makeTextFieldAnInt == nil || newPagesReadTextField.text == "" {
             print("Please enter how many pages have been read")
+            //Making Alert
+            let alert = UIAlertController(title: "Alert", message: "Please enter how many pages have been read", preferredStyle: .Alert)
+            
+            let alertActionOk = UIAlertAction(title: "OK", style: .Default, handler: {action in
+            })
+            alert.addAction(alertActionOk)
+            presentViewController(alert, animated: true, completion: nil)
         } else {
-            currentPageLabel.text = String(goal.currentPage!)
-            pagesPerDayLabel.text = String(goal.pagesPerDay!)
             GoalModelController.sharedInstance.updateGoal(goal, newPagesRead: makeTextFieldAnInt!)
+            currentPageLabel.text = "\(String(goal.currentPage!))/\(String(goal.totalPages!))"
+            pagesPerDayLabel.text = String(goal.pagesPerDay!)
+            
+            //Making Alert
+            let alert = UIAlertController(title: "Alert", message: "Your goal has been updated", preferredStyle: .Alert)
+            
+            let alertActionOk = UIAlertAction(title: "OK", style: .Default, handler: {action in
+            })
+            alert.addAction(alertActionOk)
+            presentViewController(alert, animated: true, completion: nil)
             
         }
     }

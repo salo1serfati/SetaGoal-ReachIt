@@ -49,8 +49,9 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
 
     @IBAction func newGoalButtonTapped(sender: UIButton) {
-        let nGvc = NewGoalViewController(nibName: "NewGoalViewController", bundle: nil)
-        self.navigationController?.pushViewController(nGvc, animated: true)
+        let cTPOGvc = ChooseTypeOfGoalViewController(nibName: "ChooseTypeOfGoalViewController", bundle: nil)
+        self.navigationController?.pushViewController(cTPOGvc, animated: true)
+
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
