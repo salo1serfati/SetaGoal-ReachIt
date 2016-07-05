@@ -99,15 +99,16 @@ class GoalModelController:NSObject {
         let pagesPerDay = pagesLeft / daysLeft
         
         if currentPage <= totalPages {
-        //Update how many days are left
-        goal.daysLeft = daysLeft
             
-        //Now set the new Pages Per Day to the Goal Object
-        goal.pagesPerDay = pagesPerDay
-    
-        //Also set the new Current Page
-        goal.currentPage = currentPage
-        print("Your goal has been updated")
+            //Update how many days are left
+            goal.daysLeft = daysLeft
+                
+            //Now set the new Pages Per Day to the Goal Object
+            goal.pagesPerDay = pagesPerDay
+        
+            //Also set the new Current Page
+            goal.currentPage = currentPage
+            print("Your goal has been updated")
             if currentPage == totalPages {
                 goal.completed = true
                 print("You Finished Your Goal!")

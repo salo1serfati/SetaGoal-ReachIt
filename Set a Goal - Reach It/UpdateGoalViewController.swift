@@ -83,11 +83,20 @@ class UpdateGoalViewController: UIViewController {
             
             //Making Alert
             let alert = UIAlertController(title: "Alert", message: "Your goal has been updated", preferredStyle: .Alert)
+            let alert2 = UIAlertController(title: "Congradulations", message: "You have completed your goal!", preferredStyle: .Alert)
             
             let alertActionOk = UIAlertAction(title: "OK", style: .Default, handler: {action in
             })
-            alert.addAction(alertActionOk)
-            presentViewController(alert, animated: true, completion: nil)
+            
+            
+            //Present different Alerts
+            if goal.completed {
+                alert2.addAction(alertActionOk)
+                presentViewController(alert2, animated: true, completion: nil)
+            } else {
+                alert.addAction(alertActionOk)
+                presentViewController(alert, animated: true, completion: nil)
+            }
             
         }
     }
