@@ -27,6 +27,7 @@
 		25875A2F1D1D388700CA91D9 /* icon-fitness-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = 25875A2E1D1D388700CA91D9 /* icon-fitness-hi.png */; };
 		25875A311D1D38FB00CA91D9 /* Design_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 25875A301D1D38FB00CA91D9 /* Design_Icon.png */; };
 		25875A331D1D396E00CA91D9 /* question-mark-xxl.png in Resources */ = {isa = PBXBuildFile; fileRef = 25875A321D1D396E00CA91D9 /* question-mark-xxl.png */; };
+		25875A351D206CA300CA91D9 /* noun_47529_cc.png in Resources */ = {isa = PBXBuildFile; fileRef = 25875A341D206CA300CA91D9 /* noun_47529_cc.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		25875A2E1D1D388700CA91D9 /* icon-fitness-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-fitness-hi.png"; sourceTree = "<group>"; };
 		25875A301D1D38FB00CA91D9 /* Design_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Design_Icon.png; sourceTree = "<group>"; };
 		25875A321D1D396E00CA91D9 /* question-mark-xxl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "question-mark-xxl.png"; sourceTree = "<group>"; };
+		25875A341D206CA300CA91D9 /* noun_47529_cc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noun_47529_cc.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 		25875A2B1D1D355400CA91D9 /* Pic */ = {
 			isa = PBXGroup;
 			children = (
+				25875A341D206CA300CA91D9 /* noun_47529_cc.png */,
 				25875A2E1D1D388700CA91D9 /* icon-fitness-hi.png */,
 				25875A321D1D396E00CA91D9 /* question-mark-xxl.png */,
 				25875A2C1D1D356100CA91D9 /* book.png */,
@@ -181,6 +184,7 @@
 				TargetAttributes = {
 					258759A91D1875D900CA91D9 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = Z7L36QFR97;
 					};
 				};
 			};
@@ -210,6 +214,7 @@
 				258759C21D18766A00CA91D9 /* TableViewController.xib in Resources */,
 				258759B81D1875DA00CA91D9 /* LaunchScreen.storyboard in Resources */,
 				25875A311D1D38FB00CA91D9 /* Design_Icon.png in Resources */,
+				25875A351D206CA300CA91D9 /* noun_47529_cc.png in Resources */,
 				25875A241D1A91C300CA91D9 /* UpdateGoalViewController.xib in Resources */,
 				258759F81D19462E00CA91D9 /* GoalTableViewCell.xib in Resources */,
 				25875A331D1D396E00CA91D9 /* question-mark-xxl.png in Resources */,
@@ -343,10 +348,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Set a Goal - Reach It/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.salomonserfati.Set-a-Goal---Reach-It";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -354,10 +362,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Set a Goal - Reach It/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.salomonserfati.Set-a-Goal---Reach-It";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

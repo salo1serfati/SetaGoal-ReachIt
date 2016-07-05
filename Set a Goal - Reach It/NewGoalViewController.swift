@@ -25,7 +25,7 @@ class NewGoalViewController: UIViewController {
         //Set the gradient background color
         view.backgroundColor = UIColor.clearColor()
         let backgroundLayer = redBackground.gl
-        backgroundLayer.frame = view.frame
+        backgroundLayer.frame = UIScreen.mainScreen().bounds
         view.layer.insertSublayer(backgroundLayer, atIndex: 0)
         
         //Create place to where to tapp to make keyboard disappear 

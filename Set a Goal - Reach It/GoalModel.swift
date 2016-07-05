@@ -18,6 +18,7 @@ class GoalModel:NSObject, NSCoding {
     var currentPage: Int?
     var pagesPerDay: Int?
     var dateCreated: NSDate?
+    var daysLeft: Int?
     var ID: String?
     
     //Creating  the Object for the new Goal. Parameters are required, what is in the init is optional.
@@ -27,6 +28,7 @@ class GoalModel:NSObject, NSCoding {
         self.author = author
         self.totalPages = totalPages
         self.completionTime = completionTime
+
         
         //Additional descriptions of Goal
 //        self.completed = false
@@ -61,6 +63,7 @@ class GoalModel:NSObject, NSCoding {
         aCoder.encodeObject(self.currentPage, forKey: "currentPage")
         aCoder.encodeObject(self.pagesPerDay, forKey: "pagesPerDay")
         aCoder.encodeObject(self.dateCreated, forKey: "dateCreated")
+        aCoder.encodeObject(self.daysLeft, forKey: "daysLeft")
         aCoder.encodeObject(self.ID, forKey: "id")
         
         
@@ -76,12 +79,14 @@ class GoalModel:NSObject, NSCoding {
         let currentPage = aDecoder.decodeObjectForKey("currentPage") as? Int
         let pagesPerDay = aDecoder.decodeObjectForKey("pagesPerDay") as? Int
         let dateCreated = aDecoder.decodeObjectForKey("dateCreated") as? NSDate
+        let daysLeft = aDecoder.decodeObjectForKey("daysLeft") as? Int
         let id = aDecoder.decodeObjectForKey("id") as? String
         self.init(title: title!, author: author!, totalPages: totalPages!, completionTime: completionTime!)
         self.completed = completed!
         self.currentPage = currentPage
         self.pagesPerDay = pagesPerDay
         self.dateCreated = dateCreated
+        self.daysLeft = daysLeft
         self.ID = id
     }
 }

@@ -25,6 +25,9 @@ class ChooseTypeOfGoalViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func backButtonTapped(sender: UIButton) {
+        navigationController?.popViewControllerAnimated(true)
+    }
     @IBAction func readingGoalTapped(sender: UIButton) {
         let nGvc = NewGoalViewController(nibName: "NewGoalViewController", bundle: nil)
         self.navigationController?.pushViewController(nGvc, animated: true)

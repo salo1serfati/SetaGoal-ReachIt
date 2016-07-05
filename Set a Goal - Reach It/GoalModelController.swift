@@ -35,6 +35,7 @@ class GoalModelController:NSObject {
         newGoal.currentPage = 0
         newGoal.pagesPerDay = self.checkPagesPerDay(totalPages, completionTime: completionTime)
         newGoal.dateCreated = NSDate()
+        newGoal.daysLeft = completionTime
         newGoal.ID = NSUUID().UUIDString
         print("New Goal Created and the ID is: \(newGoal.ID))")
         goalList.append(newGoal)
@@ -73,23 +74,20 @@ class GoalModelController:NSObject {
         let completionTime = goal.completionTime
         var currentPage = goal.currentPage
         let currentDate = NSDate()
-        var update = true
-        print("currentDate: \(currentDate)")
-        print("Start Date \(goal.dateCreated)")
+        //var update = true
         
         //calculating daysPassed
         let calendar: NSCalendar = NSCalendar.currentCalendar()
+        print("Calendar: \(calendar)")
         
         // Replace the hour (time) of both dates with 00:00
         let date1 = calendar.startOfDayForDate(goal.dateCreated!)
         let date2 = calendar.startOfDayForDate(currentDate)
-        
         let flags = NSCalendarUnit.Day
         let components = calendar.components(flags, fromDate: date1, toDate: date2, options: [])
         
-          // This will return the number of day(s) between dates
+        // This will return the number of day(s) between dates
         let daysPassed = components.day
-        print("Days Passed \(daysPassed)")
         
         //Update the Current Page
         currentPage = newPagesRead + currentPage!
@@ -101,7 +99,9 @@ class GoalModelController:NSObject {
         let pagesPerDay = pagesLeft / daysLeft
         
         if currentPage <= totalPages {
-        
+        //Update how many days are left
+        goal.daysLeft = daysLeft
+            
         //Now set the new Pages Per Day to the Goal Object
         goal.pagesPerDay = pagesPerDay
     
@@ -115,7 +115,7 @@ class GoalModelController:NSObject {
         
         } else {
             print("You read more pages than are in your book!")
-             update = false
+             goal.completed = false
             return
         }
         

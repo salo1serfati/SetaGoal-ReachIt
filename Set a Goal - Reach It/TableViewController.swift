@@ -31,6 +31,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         self.tableView.headerViewForSection(25)
         
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -73,7 +74,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
                 cell.ppdLabel.text = String(specificGoal.pagesPerDay!)
                 print("PagesPerDay: \(String(specificGoal.pagesPerDay!))")
                 cell.currentPageLabel.text = ("\(String(specificGoal.currentPage!)) / \(String(specificGoal.totalPages!))")
-                cell.daysLeftLabel.text = String(specificGoal.completionTime!)
+                cell.daysLeftLabel.text = String(specificGoal.daysLeft!)
             
        
             
