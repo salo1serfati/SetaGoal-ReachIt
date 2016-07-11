@@ -12,7 +12,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var createGameNavigationController: UINavigationController?
+    var createGoalNavigationController: UINavigationController?
+    var easterEggController: UINavigationController?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -25,10 +26,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Set TableViewController to be a navigation controller starting at TableViewController
         let tvc = TableViewController(nibName:"TableViewController",bundle:nil)
-        createGameNavigationController = UINavigationController(rootViewController:tvc)
-        self.window?.rootViewController = self.createGameNavigationController
+        createGoalNavigationController = UINavigationController(rootViewController:tvc)
+        //self.window?.rootViewController = self.createGoalNavigationController
+        
+        let easterEggContoller = EasterEggViewController(nibName: "EasterEggViewController", bundle:nil)
+        easterEggController = UINavigationController(rootViewController: easterEggContoller)
+         self.window?.rootViewController = self.easterEggController
+        //Make Gestures Global
+        EasterEggController.sharedInstance.initiate(self.window!)
        
         return true
+    }
+    
+    func navigateToEasterEggScreen() {
+        self.window?.rootViewController = self.easterEggController
+    }
+    func navigateToTableView() {
+        self.window?.rootViewController = self.createGoalNavigationController
     }
 
     func applicationWillResignActive(application: UIApplication) {
